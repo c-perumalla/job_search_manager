@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calvin A. Perumalla, Ph.D. - Resume</title>
+  <link rel="stylesheet" href="resume.css">
+</head>
+<body>
+  <header>
+    <h1>CALVIN A. PERUMALLA, PH.D.</h1>
+    <p class="contact">
+      <a href="mailto:calvinapollos@gmail.com">calvinapollos@gmail.com</a> | 
+      (813) 508–0752 | 
+      <a href="https://linkedin.com/in/calvin-perumalla">LinkedIn</a> | 
+      <a href="https://github.com/c-perumalla">GitHub</a>
+    </p>
+  </header>
+
+  <section>
+    <h2>PROFESSIONAL SUMMARY</h2>
+    <p>{{SUMMARY}}</p>
+  </section>
+
+  <section>
+    <h2>SKILLS</h2>
+    <ul>
+      {% for skill in SKILLS %}
+        <li>{{skill}}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>RELEVANT WORK EXPERIENCE</h2>
+    {{EXPERIENCE}}
+  </section>
+
+  <section>
+    <h2>EDUCATION</h2>
+    <p>{{EDUCATION}}</p>
+  </section>
+
+  <section>
+    <h2>SELECTED ACHIEVEMENTS</h2>
+    <ul>
+      {% for achievement in ACHIEVEMENTS %}
+        <li>{{achievement}}</li>
+      {% endfor %}
+    </ul>
+  </section>
+</body>
+</html>

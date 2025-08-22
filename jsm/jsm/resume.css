@@ -1,0 +1,64 @@
+@page {
+  size: Letter;            /* US Letter size */
+  margin: 0.5in;           /* 0.5-inch margins */
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 11pt;         /* Main text size */
+  margin: 0;               /* Margins handled by @page */
+  line-height: 1.2;        /* Tight line spacing */
+  color: #000;
+}
+
+h1 {
+  font-size: 16pt;         /* Main name header */
+  font-weight: bold;
+  margin: 0 0 4px 0;       /* Minimal spacing */
+  text-transform: uppercase;
+}
+
+header .contact {
+  font-size: 9pt;
+  margin: 0 0 6px 0;       /* Reduced spacing */
+}
+
+h2 {
+  font-size: 12pt;         /* Section headers */
+  font-weight: bold;
+  margin: 6px 0 3px 0;     /* Tight spacing */
+  text-transform: uppercase;
+  border-bottom: 1px solid #444;
+  padding-bottom: 1px;
+}
+
+h4 {
+  font-size: 10pt;         /* Subheading for job titles */
+  font-weight: bold;
+  margin: 2px 0 1px 0;     /* Very tight spacing above and below */
+}
+
+section {
+  margin-bottom: 6px;      /* Reduced section spacing */
+}
+
+p {
+  margin: 0 0 2px 0;       /* Tight paragraph spacing */
+}
+
+ul {
+  margin: 0 0 2px 14px;    /* Compact bullet list */
+  padding: 0;
+}
+
+li {
+  margin-bottom: 1px;      /* Tight bullets */
+}
+
+/* Skills section in two columns for space efficiency */
+.skills ul {
+  columns: 2;              /* Two-column layout for skills */
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  column-gap: 10px;
+}

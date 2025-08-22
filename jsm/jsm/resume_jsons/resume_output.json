@@ -1,0 +1,17 @@
+{
+  "SUMMARY": "Signal Processing Engineer (PhD, EE) with 8+ years building ML-driven pipelines for physiological sensing and video analytics. Expert in FIR/IIR filtering, FFT/wavelets, feature extraction, and deep learning (PyTorch/TensorFlow) for human pose/activity recognition. Proven collaborator delivering production-ready Python solutions and validated algorithms for clinical-grade applications.",
+  "SKILLS": [
+    "Programming Languages: Python, C++, SQL, MATLAB",
+    "Frameworks & Libraries: PyTorch, TensorFlow, NumPy, SciPy, pandas, scikit-learn, Matplotlib, OpenCV",
+    "Tools & Platforms: Jupyter, Git, AWS, Databricks, Spark, Docker, Linux",
+    "Other Relevant Skills: FIR/IIR filtering, FFT/spectral analysis, wavelet analysis, feature extraction, human pose estimation, keypoint tracking, LSTM, validation/benchmarking"
+  ],
+  "EXPERIENCE": "<h4>Postdoctoral Researcher, Stanford School of Medicine — Feb 2021–Present</h4><ul><li>Analyzed multi-modal sensor data (video, pressure, EEG) to extract physiological signatures and performance metrics.</li><li>Designed Python signal-processing pipelines: FIR/IIR filtering, FFT, wavelets, feature extraction; built CNN‑LSTM models in PyTorch/TensorFlow.</li><li>Implemented human pose estimation and keypoint tracking for surgical activity recognition; improved gesture detection accuracy to state-of-the-art.</li><li>Partnered with hardware/software teams; defined requirements, integrated algorithms, and validated performance on clinical and simulated datasets.</li></ul><h4>Data Scientist, Vectra (Cybersecurity) — Oct 2017–Mar 2020</h4><ul><li>Built high-performance SQL and PySpark data pipelines; curated >1B rows; engineered features for network behavior modeling.</li><li>Developed and productionized anomaly detection models; reduced analyst workload by 80% through precision triage and automation.</li><li>Wrote robust, testable Python; staged models on distributed systems; instrumented monitoring and validation dashboards.</li><li>Collaborated cross-functionally, presenting results to engineering and product; drove iterations from research to deployment.</li></ul><h4>PhD Research Assistant, University of South Florida — Jan 2013–Aug 2017</h4><ul><li>Researched ECG signal processing and machine learning; FIR/IIR design, spectral analysis, wavelets, and feature engineering.</li><li>Predicted paroxysmal atrial fibrillation from 24‑hour ECG; achieved >99% accuracy using novel temporal features.</li><li>Converted wireless iVCG signals to 12‑lead ECG via MMSE estimation; reduced reconstruction error to &lt;6%.</li><li>Built LSTM/SVM models for diagnostic classification; achieved 98% accuracy on long‑term ECG datasets.</li></ul>",
+  "EDUCATION": "<ul><li>PhD, Electrical Engineering, University of South Florida, 2017 — Dissertation: Machine learning and adaptive signal processing for ECG.</li><li>MS, Electrical Engineering, University of South Florida, 2014.</li><li>B.Tech, Electronics and Communication, Malla Reddy Engineering College (JNTU), 2011.</li></ul>",
+  "ACHIEVEMENTS": [
+    "Led video-based surgical activity recognition; delivered state-of-the-art hand-gesture detection with deep learning.",
+    "Secured $350K Stanford Catalyst seed funding as co‑PI for sensor-based performance assessment system.",
+    "Published 14 peer‑reviewed papers; awarded 2 U.S. patents in biomedical signal processing.",
+    "Achieved >99% PAF prediction accuracy; reduced analyst workload 80% with production ML."
+  ]
+}
