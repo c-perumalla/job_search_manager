@@ -1,3 +1,4 @@
+import os
 import openai
 import markdown
 from weasyprint import HTML
@@ -31,7 +32,7 @@ def generate_resume_json(job_description, resume_text):
     except json.JSONDecodeError:
         raise ValueError("GPT output was not valid JSON. Please re-run.")
 
-    return resume_json
+    return resume_json, content
 
 # ---- Step 2: Save JSON for manual editing ----
 def save_resume_json(resume_json, filename="resume_output.json"):
@@ -52,14 +53,16 @@ def render_resume(resume_json, template_file="resume_template.html", css_file="r
     HTML(string=html_content, base_url=".").write_pdf(output_pdf, stylesheets=[css_file])
     print(f"✅ PDF saved as {output_pdf}")
 
-# Example Usage
-if __name__ == "__main__":
+def fine_tune_resume(jd_html, link_to_url):
     # read base resume
+    print('reading base resume from file: /Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/base_resume/base_aug14_2025.txt')
     with open("/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/base_resume/base_aug14_2025.txt", "r") as f:
         base_resume = f.read()
+    print('success')
 
     # read a job description from a HTML file
-    with open("/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/job_descriptions/(17) Signal Processing Engineer _ Autonomous Healthcare _ LinkedIn.html", "r") as f:
+    print('reading job description from file: ', jd_html)
+    with open(jd_html, "r") as f:
         job_description = f.read()
         # parse the HTML to extract the job description text
         soup = BeautifulSoup(job_description, 'html.parser')
@@ -73,23 +76,45 @@ if __name__ == "__main__":
         end_idx = text.find(end_marker, start_idx)
 
         # Extract section
+        print('extracting job description section between markers:', start_marker, 'and', end_marker)
         job_text = text[start_idx:end_idx].strip() if start_idx != -1 and end_idx != -1 else "Section not found."
-    
-    print('total number of words in job descriotion and base resume:', len(job_description.split()) + len(base_resume.split()))
+
+    with open("/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/job_descriptions/last_job_description.txt", "w") as f:
+        f.write(job_text + "\n\n" + "Link to job posting: " + link_to_url)
+
+    print('success')
+    total_words = len(job_text.split()) + len(base_resume.split())
+    print('total number of words in job descriotion and base resume:', total_words)
+    input_tkns = total_words * 1.5
+    print(f'total tokens (approx): {input_tkns}')  # Rough estimate: 1.5 tokens per word
     #print("Job Description:", job_text)
     #print("Base Resume:", base_resume)
 
      # 1. Generate tailored JSON
-    resume_json = generate_resume_json(job_text, base_resume)
+    print('generating tailored resume JSON using GPT-5...')
+    start = datetime.now()
+    resume_json, content = generate_resume_json(job_text, base_resume)
+    end = datetime.now()
+    print('success, total time taken:', (end - start).total_seconds(), 'seconds')
+    output_tkns = len(content.split()) * 1.5
+    print("total number of tokens in response (approx):", output_tkns)  # Rough estimate: 1.5 tokens per word
+    print(f"total cost of this API call (approx): ${input_tkns*(1.25/1e6) + output_tkns*(10/1e6)} USD") 
+
 
     # 2. Save JSON for manual review/editing
     file_id = datetime.now().strftime("%Y%m%d_%H%M")
-    resume_output_path = "/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/resume_jsons/resume_output_{}.json".format(file_id)
     resume_json_pth = "/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/resume_jsons/resume_output_{}.json".format(file_id)
+    print('saving tailored resume JSON to file:', resume_json_pth)
     save_resume_json(resume_json, resume_json_pth)
+    print('success')
 
-    # 3. Render PDF from JSON + template
+    # 3. Save job description text to a file for reference
+    jd_path = os.path.join(os.basepath(jd_html), f"jd_{file_id}.txt")
+
+    # 4. Render PDF from JSON + template
     output_resume_path = "/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/output_resumes/output_resume_{}.pdf".format(file_id)
     resume_tmplt_pth = "/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/resume_template.html"
     css_tmplt_pth = "/Users/calvinperumalla/personal/git/job_search_manager/jsm/jsm/resume.css"
+    print('rendering final tailored resume PDF to file:', output_resume_path)
     render_resume(resume_json, resume_tmplt_pth, css_tmplt_pth, output_resume_path)
+    print('success')
